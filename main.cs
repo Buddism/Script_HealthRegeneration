@@ -152,6 +152,12 @@ function ShapeBase::HR_regenTick(%this)
     {
         if($Pref::HealthRegen::HealVignette && isObject(%this.client))
             EnvGuiServer::SendVignette(%this.client);
+        if(%this.getDamageLevel() == 0)
+        {
+            %this.emote(HealImage, true);
+            %this.playAudio(0, heal_Sound);
+        }
+
         return;
     }
 
