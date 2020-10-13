@@ -2,7 +2,7 @@
 function HR_registerPref(%cat, %title, %type, %variable, %addon, %default, %params, %callback, %legacy, %isSecret, %isHostOnly) {
     new ScriptObject(Preference)
     {
-        className     = "ServerSettingPref";
+        className     = "HR_preference";
 
         addon         = %addon;
         category      = %cat;
@@ -25,14 +25,14 @@ function HR_registerPref(%cat, %title, %type, %variable, %addon, %default, %para
 }
 function HR_registerPrefs()
 {
-    //super hacky
+    //super hacky for debug
     // if(isObject(ScriptHealthRegenerationPrefs))
     //     ScriptHealthRegenerationPrefs.delete();
     //
     // for(%I = PreferenceGroup.getcount() - 1; %I >= 0; %I--)
     // {
     //     %t = PreferenceGroup.getObject(%I);
-    //     if(%t.category $= "Health Regeneration")
+    //     if(%t.addon $= "Script_HealthRegeneration")
     //     {
     //         talk(%i);
     //         %t.delete();
@@ -45,21 +45,21 @@ function HR_registerPrefs()
         registerPreferenceAddon("Script_HealthRegeneration", "Health Regeneration", "health");
 
         //general regen settings
-        HR_registerPref("Health Regeneration", "Enabled"             , "dropdown", "$Pref::HealthRegen::Enabled"          , "Script_HealthRegeneration", 2      , "Disabled 0 Enabled 1 MinigameOnly 2");
-        HR_registerPref("Health Regeneration", "Regen Type"          , "dropdown", "$Pref::HealthRegen::Type"             , "Script_HealthRegeneration", 0      , "Percentage 0 Additive 1");
+        HR_registerPref("Health Regeneration", "Enabled"             , "dropdown" , "$Pref::HealthRegen::Enabled"          , "Script_HealthRegeneration", 2      , "Disabled 0 Enabled 1 MinigameOnly 2");
+        HR_registerPref("Health Regeneration", "Regen Type"          , "dropdown" , "$Pref::HealthRegen::Type"             , "Script_HealthRegeneration", 0      , "Percentage 0 Additive 1");
 
-        HR_registerPref("Health Regeneration", "Recover Time (MS)"   , "num"     , "$Pref::HealthRegen::RecoverTime"      , "Script_HealthRegeneration", 7500   , "0 30000 1");
-        HR_registerPref("Health Regeneration", "Regen Amount"        , "num"     , "$Pref::HealthRegen::Amount"           , "Script_HealthRegeneration", 1      , "0 999999 2");
+        HR_registerPref("Health Regeneration", "Recover Time (MS)"   , "num"      , "$Pref::HealthRegen::RecoverTime"      , "Script_HealthRegeneration", 7500   , "0 30000 1");
+        HR_registerPref("Health Regeneration", "Regen Amount"        , "num"      , "$Pref::HealthRegen::Amount"           , "Script_HealthRegeneration", 1      , "0 999999 2");
 
-        HR_registerPref("Health Regeneration", "Damage Cancels Heal" , "bool"    , "$Pref::HealthRegen::DamageCancelsHeal", "Script_HealthRegeneration", 1      );
-        HR_registerPref("Health Regeneration", "Start Regen on Kill" , "bool"    , "$Pref::HealthRegen::RegenOnKill"      , "Script_HealthRegeneration", false  );
-        HR_registerPref("Health Regeneration", "Only Regen on Kill"  , "bool"    , "$Pref::HealthRegen::OnlyRegenOnKill"  , "Script_HealthRegeneration", false  );
+        HR_registerPref("Health Regeneration", "Damage Cancels Heal" , "bool"     , "$Pref::HealthRegen::DamageCancelsHeal", "Script_HealthRegeneration", 1      );
+        HR_registerPref("Health Regeneration", "Start Regen on Kill" , "bool"     , "$Pref::HealthRegen::RegenOnKill"      , "Script_HealthRegeneration", false  );
+        HR_registerPref("Health Regeneration", "Only Regen on Kill"  , "bool"     , "$Pref::HealthRegen::OnlyRegenOnKill"  , "Script_HealthRegeneration", false  );
 
         //vignette settings
-        HR_registerPref("Vignette"           , "Heal Vignette Effect", "bool"    , "$Pref::HealthRegen::HealVignette"     , "Script_HealthRegeneration", false  );
-        HR_registerPref("Vignette"           , "Vignette Strength"   , "num"     , "$Pref::HealthRegen::VignetteStrength" , "Script_HealthRegeneration", 0.4      , "0 1 5");
-        HR_registerPref("Vignette"           , "Vignette Color"      , "rgb"     , "$Pref::HealthRegen::VignetteColor"    , "Script_HealthRegeneration", "1 1 1");
-        HR_registerPref("Vignette"           , "Vignette Multiply"   , "bool"    , "$Pref::HealthRegen::vignetteMultiply" , "Script_HealthRegeneration", false);
+        HR_registerPref("Vignette"           , "Heal Vignette Effect", "bool"     , "$Pref::HealthRegen::HealVignette"     , "Script_HealthRegeneration", false  );
+        HR_registerPref("Vignette"           , "Vignette Strength"   , "num"      , "$Pref::HealthRegen::VignetteStrength" , "Script_HealthRegeneration", 0.4      , "0 1 5");
+        HR_registerPref("Vignette"           , "Vignette Color"      , "rgb"      , "$Pref::HealthRegen::VignetteColor"    , "Script_HealthRegeneration", "1 1 1");
+        HR_registerPref("Vignette"           , "Vignette Multiply"   , "bool"     , "$Pref::HealthRegen::vignetteMultiply" , "Script_HealthRegeneration", false);
     }
 }
 HR_registerPrefs();
