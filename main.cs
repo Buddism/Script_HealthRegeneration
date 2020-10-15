@@ -100,7 +100,8 @@ package Script_HealthRegeneration
     }
     function Armor::onDamage(%this, %obj, %damage)
     {
-        if($Pref::HealthRegen::DamageCancelsHeal)
+        //apparently this function is called when you gain health
+        if(%damage > 0 && $Pref::HealthRegen::DamageCancelsHeal)
         {
             //cancel health regen if taken damage
             cancel(%obj.HR_regenTick);
@@ -128,7 +129,7 @@ function ShapeBase::HR_checkForRegen(%this, %damage)
     if(%recoverTime > 0)
     {
         cancel(%this.HR_startRegen);
-        %this.schedule(%recoverTime, HR_startRegen);
+        %this.HR_startRegen = %this.schedule(%recoverTime, HR_startRegen);
     } else {
         %this.HR_startRegen();
     }
